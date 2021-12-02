@@ -28,7 +28,6 @@ function tau = tau_nep(steptime,initialvalue,finalvalue,times,values);
     end
     b = b(find(t>steptime));
     t = t(find(t>steptime));
-    plot(t,b);
     a = polyfit(t,b,1);
     a = a(1);
     tau = 1/a;
