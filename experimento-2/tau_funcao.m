@@ -3,6 +3,7 @@ function tau = tau_funcao(steptime,initialvalue,finalvalue,times,values);
     ts = S.SettlingTime;
     values_ss = [];
     j = 1;
+    times = times(find(times > steptime));
     for i=1:length(times)
         time = times(i);
         if time >= ts 
