@@ -13,6 +13,6 @@ function tau = tau_funcao(steptime,initialvalue,finalvalue,times,values);
         end
     end
     Vt_ss = sum(values_ss)/length(values_ss);
-    idxs = find(values>=0.63*Vt_ss+val_steptime);
-    tau = times(idxs(1));
+    idxs = find(values>=0.63*(Vt_ss-val_steptime));
+    tau = times(idxs(1))-steptime;
 end

@@ -3,7 +3,7 @@ function tau = tau_nep(steptime,initialvalue,finalvalue,times,values);
     ts = S.SettlingTime;
     t = times(find(times <= ts));
     y = values(1:length(t));
-    A0 = trapz(t,y);
+    val_steptime = values(find(times == steptime));
     values_ss = [];
     j = 1;
     for i=1:length(times)
@@ -17,8 +17,8 @@ function tau = tau_nep(steptime,initialvalue,finalvalue,times,values);
     idxs = find(values >= Vt_ss);
     idx = idxs(1);
     tr = times(idx);
-    t = times(find(times < tr));
-    y = values(find(times < tr));
+    t = times(find(times >= steptime & times < tr)) - steptime;
+    y = values(find(times >= steptime & times < tr)) - val_steptime;
     b = [];
     for i=1:length(y)
         b(i) = log(Vt_ss/(Vt_ss-y(i)));
@@ -26,9 +26,11 @@ function tau = tau_nep(steptime,initialvalue,finalvalue,times,values);
             disp(y(i));
         end
     end
-    b = b(find(t>steptime));
-    t = t(find(t>steptime));
+   	
     a = polyfit(t,b,1);
+    plot(t,b);
+    hold on;
+    plot(t,y);
     a = a(1);
     tau = 1/a;
 end
