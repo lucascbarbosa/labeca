@@ -4,16 +4,8 @@ function tau = tau_nep(steptime,initialvalue,finalvalue,times,values);
     t = times(find(times <= ts));
     y = values(1:length(t));
     val_steptime = values(find(times == steptime));
-    values_ss = [];
-    j = 1;
-    for i=1:length(times)
-        time = times(i);
-        if time >= ts 
-            values_ss(j) = values(i);
-            j = j+1;
-        end
-    end
-    Vt_ss = sum(values_ss)/length(values_ss);
+    K = ganho(steptime,initialvalue,finalvalue,times,values);
+    Vt_ss = K*(finalvalue-initialvalue) + val_steptime;
     idxs = find(values >= Vt_ss);
     idx = idxs(1);
     tr = times(idx);
@@ -22,11 +14,7 @@ function tau = tau_nep(steptime,initialvalue,finalvalue,times,values);
     b = [];
     for i=1:length(y)
         b(i) = log(Vt_ss/(Vt_ss-y(i)));
-        if Vt_ss <= y(i)
-            disp(y(i));
-        end
     end
-   	
     a = polyfit(t,b,1);
     plot(t,b);
     hold on;

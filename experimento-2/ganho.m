@@ -12,5 +12,6 @@ function K = ganho(steptime,initialvalue,finalvalue,times, values);
         end
     end
     Vt_ss = sum(values_ss)/length(values_ss);
-    K = (Vt_ss-val_steptime)/finalvalue;
+    disp(finalvalue-initialvalue);
+    K = (Vt_ss-val_steptime)/(finalvalue-initialvalue);
 end
