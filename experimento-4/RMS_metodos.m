@@ -1,4 +1,4 @@
-function [metodo,RMS]= RMS_metodos(Vt_real,Vt_fun,Vt_area,Vt_nep,Vt_bode,samples)
+function [metodo,RMS]= RMS_metodos(time,samples,Vt_real,Vt_fun,Vt_area,Vt_nep,Vt_bode)
     Vt_real_avg = [];
     for i=samples+1:length(Vt_real)
         Vt_real_avg(i-samples)= mean(Vt_real(i-samples:i-1));
@@ -31,4 +31,17 @@ function [metodo,RMS]= RMS_metodos(Vt_real,Vt_fun,Vt_area,Vt_nep,Vt_bode,samples
     RMS = min([RMS_fun RMS_area RMS_nep RMS_bode]);
     metodos = ["funcao" "area" "nep" "bode"];
     metodo = metodos(find([RMS_fun RMS_area RMS_nep RMS_bode]==RMS));
+    
+    plot(Vt_real_avg);
+    hold on;
+    plot(Vt_fun_avg);
+    hold on;
+    plot(Vt_area_avg);
+    hold on;
+    plot(Vt_nep_avg);
+    hold on;
+    plot(Vt_bode_avg);
+    xlabel('amostras');
+    ylabel('MM50 de V_t');
+    legend(["V_{t_{real}}" "V_{t_{fun}}" "V_{t_{area}}" "V_{t_{nep}}" "V_{t_{bode}}"],'FontSize',14)
 end
