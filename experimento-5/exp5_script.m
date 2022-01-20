@@ -29,10 +29,21 @@ R_finalvalue = 5;
 out = sim('exp5_diagrama.slx',tempo_total/2);
 
 %Plot Vt and R
+figure(1)
 plot(out.Vtd.time/h,out.Vtd.signals.values)
 hold on
-plot(out.R.time/h,out.R.signals.values)
+plot(out.ref.time/h,out.ref.signals.values)
 legend('V_t(t_k)','R(t_k)')
 xlabel('k')
 ylabel('Signal')
 title('Discrete time reference and V_t')
+saveas(gcf,'imgs/response_ref.png')
+
+%Plot
+figure(2)
+plot(out.Wt.time,out.Wt.signals.values)
+xlabel('t')
+ylabel('$\omega_t$','Interpreter','latex','FontSize',16)
+title('Continuous time angular velocity')
+saveas(gcf,'imgs/wt.png')
+
