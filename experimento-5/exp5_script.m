@@ -26,7 +26,7 @@ R_steptime = 1;
 R_initialvalue = 3;
 R_finalvalue = 5;
 
-out = sim('exp5_diagrama.slx',tempo_total/2);
+out = sim('exp5_diagrama.slx',tempo_total);
 
 %Plot Vt and R
 figure(1)
