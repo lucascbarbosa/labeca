@@ -16,6 +16,10 @@ wn = 4/(zeta*ts);
 K = 1.2;
 tau = 0.1077;
 
+% Noise
+noise_power = 0;
+noise_freq = h_motor;
+
 % PI control parameters
 Kp = (2*zeta*wn*tau-1)/K;
 Fi = (wn^2*tau)/(Kp*K);
