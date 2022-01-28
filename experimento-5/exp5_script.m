@@ -3,10 +3,10 @@ clear all;
 close all;
 load('motor.mat');
 h = 1e-3;
-tempo_total = 5;
+tempo_total = 30;
 h_motor = h*1e-1;
 PO = 0.1;
-ts = 2;
+ts = 0.2;
 
 % Estimation of dynamic constants
 zeta = abs(log(PO))/(sqrt(pi^2+log(PO)^2));
@@ -17,8 +17,7 @@ K = 1.2;
 tau = 0.1077;
 
 % Noise
-noise_power = 0;
-noise_freq = h_motor;
+noise_power = 1e-6;
 
 % PI control parameters
 Kp = (2*zeta*wn*tau-1)/K;
@@ -26,9 +25,9 @@ Fi = (wn^2*tau)/(Kp*K);
 Ti = 1/Fi;
 
 % Reference
-R_steptime = 0;
-R_initialvalue = 5;
-R_finalvalue = 10;
+R_steptime = 1;
+R_initialvalue = 3;
+R_finalvalue = 5;
 
 % Initial variables
 x0 = [0;0];
