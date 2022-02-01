@@ -3,7 +3,7 @@ clear all;
 close all;
 load('motor.mat');
 h = 1e-3;
-tempo_total = 30;
+tempo_total = 5;
 h_motor = h*1e-1;
 PO = 0.1;
 ts = 0.2;
