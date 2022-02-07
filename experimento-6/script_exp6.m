@@ -13,7 +13,8 @@ x0=[1;0];
 noise_power = 0;
 
 % PRBS settings
-gain_PRBS = 2;
+freq_PRBS = 2;
+gain_PRBS = 10;
 DC_PRBS = 4;
 
 % Simulate 
