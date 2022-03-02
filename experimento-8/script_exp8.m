@@ -47,7 +47,8 @@ A2 = [
    0 1 0 0
    0 0 -m*g/(J/(R^2)+m) 0
    0 0 0 1
-   0 0 0 0];
+   0 0 0 0
+   ];
 B2 = [0 0 0 1]';
 C2 = [1 0 0 0]; 
 D2 = 0;
@@ -64,4 +65,29 @@ K2 = K2(1:4);
 
 xi20 = 0;
 
+%% Simulation
+out = sim('space_state.slx');
+
 %% Plots
+
+% Velocity
+figure
+plot(out.y1)
+hold on
+plot(out.y2)
+legend({'$\omega_1(t)$','$\omega_2(t)$'},'Interpreter','latex')
+title('Velocidade do motor')
+xlabel('$t$','Interpreter','latex')
+ylabel('$\omega(t)$','Interpreter','latex')
+saveas(gcf,'imgs/y.png')
+
+% Control
+figure
+plot(out.u1)
+hold on
+plot(out.u2)
+legend({'$u_1(t)$','$u_2(t)$'},'Interpreter','latex')
+title('Sinal de Controle')
+xlabel('$t$','Interpreter','latex')
+ylabel('$u(t)$','Interpreter','latex')
+saveas(gcf,'imgs/u.png')
